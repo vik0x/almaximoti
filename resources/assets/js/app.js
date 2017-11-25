@@ -15,8 +15,15 @@ window.Vue = require('vue');
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-Vue.component('example-component', require('./components/ExampleComponent.vue'));
+ import PRODUCTO from './components/Producto.vue';
 
 const app = new Vue({
-    el: '#app'
+    el: '#app',
+    components:{'producto':PRODUCTO},
+    data:{
+    	clave:'',
+    	nombre:'',
+    	tipo:'',
+    	activo:false
+    }
 });
