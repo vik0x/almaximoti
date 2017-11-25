@@ -15,8 +15,7 @@ class CreatePricesTable extends Migration
     {
         Schema::create('prices', function (Blueprint $table) {
             $table->unsignedInteger('product_id');
-            $table->float('buy_price',8,2);
-            $table->float('sale_price',8,2);
+            $table->float('price',8,2);
             $table->timestamps();
             $table->foreign('product_id')->references('id')->on('products');
         });

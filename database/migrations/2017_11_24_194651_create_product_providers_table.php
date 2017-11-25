@@ -16,7 +16,8 @@ class CreateProductProvidersTable extends Migration
         Schema::create('product_providers', function (Blueprint $table) {
             $table->unsignedInteger('product_id');
             $table->unsignedInteger('provider_id');
-            $table->timestamps();
+            $table->string('key');
+            $table->float('price',8,2);
             $table->foreign('product_id')->references('id')->on('products');
             $table->foreign('provider_id')->references('id')->on('providers');
         });
