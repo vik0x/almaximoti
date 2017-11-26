@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('script')
-    <script src="{{asset('/assets/js/app.js')}}"></script>
+    <script src="{{asset('/assets/js/product.js')}}"></script>
 @stop
 
 @section('css')
@@ -10,8 +10,8 @@
 
 @section('content')
     <div class="row">
-        <div class="col-xs-6 col-xs-offset-3">
-            <a href="{{url('/productos')}}" class="btn btn-large btn-success">Productos</a>
+        <div class="col-xs-12">
+            <producto class="table table-hover table-striped"></producto>
         </div>
     </div>
 @stop

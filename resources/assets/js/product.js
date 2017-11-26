@@ -15,7 +15,7 @@ window.Vue = require('vue');
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
- import PRODUCTO from './components/detail.vue';
+ import PRODUCTO from './components/product.vue';
 
 const app = new Vue({
     el: '#app',
