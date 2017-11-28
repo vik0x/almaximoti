@@ -43218,15 +43218,17 @@ exports = module.exports = __webpack_require__(11)(undefined);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
 
 /***/ }),
 /* 66 */
-/***/ (function(module, exports) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
@@ -43249,6 +43251,25 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 //
 //
 //
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+	data: function data() {
+		return {
+			items: []
+		};
+	},
+
+	computed: {
+		items_provider: function items_provider() {
+			return this.items;
+		}
+	},
+	mounted: function mounted() {
+		eventBus.$on('providers', function (prov) {
+			this.items = prov;
+		}.bind(this));
+	}
+});
 
 /***/ }),
 /* 67 */
@@ -43261,45 +43282,48 @@ var render = function() {
   return _c("table", [
     _vm._m(0, false, false),
     _vm._v(" "),
-    _c("tbody", [
-      _c("tr", [
-        _c("td", [
-          _c(
-            "button",
-            {
-              staticClass: "btn btn-default",
-              on: {
-                "click:prevent": function($event) {
-                  _vm.edit(_vm.item.id)
+    _c(
+      "tbody",
+      _vm._l(_vm.items_provider, function(item) {
+        return _c("tr", [
+          _c("td", [
+            _c(
+              "button",
+              {
+                staticClass: "btn btn-default",
+                on: {
+                  "click:prevent": function($event) {
+                    _vm.edit(item.id)
+                  }
                 }
-              }
-            },
-            [_c("i", { staticClass: "glyphicon glyphicon-pencil" })]
-          )
-        ]),
-        _vm._v(" "),
-        _c("td", [_vm._v("Uno")]),
-        _vm._v(" "),
-        _c("td", [_vm._v("Dos")]),
-        _vm._v(" "),
-        _c("td", [_vm._v("Tres")]),
-        _vm._v(" "),
-        _c("td", [
-          _c(
-            "button",
-            {
-              staticClass: "btn btn-default",
-              on: {
-                "click:prevent": function($event) {
-                  _vm.destroy(_vm.item.id)
+              },
+              [_c("i", { staticClass: "glyphicon glyphicon-pencil" })]
+            )
+          ]),
+          _vm._v(" "),
+          _c("td", [_vm._v(_vm._s(item.name))]),
+          _vm._v(" "),
+          _c("td", [_vm._v(_vm._s(item.clave))]),
+          _vm._v(" "),
+          _c("td", [_vm._v(_vm._s(item.price))]),
+          _vm._v(" "),
+          _c("td", [
+            _c(
+              "button",
+              {
+                staticClass: "btn btn-default",
+                on: {
+                  "click:prevent": function($event) {
+                    _vm.destroy(item.id)
+                  }
                 }
-              }
-            },
-            [_c("i", { staticClass: "glyphicon glyphicon-remove" })]
-          )
+              },
+              [_c("i", { staticClass: "glyphicon glyphicon-remove" })]
+            )
+          ])
         ])
-      ])
-    ])
+      })
+    )
   ])
 }
 var staticRenderFns = [

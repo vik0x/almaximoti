@@ -16,14 +16,24 @@ window.Vue = require('vue');
  */
 
  import PRODUCTO from './components/product.vue';
+ import DETAIL from './components/detail.vue';
+ window.eventBus = new Vue();
 
 const app = new Vue({
     el: '#app',
-    components:{'producto':PRODUCTO},
+    components:{
+    	'producto'	: PRODUCTO,
+    	'detalle'	: DETAIL
+    },
     data:{
     	clave:'',
     	nombre:'',
     	tipo:'',
-    	activo:false
+    	activo:false,
+        detail:{
+            clave:'',
+            nombre:'',
+            tipo:'',
+        }
     }
 });

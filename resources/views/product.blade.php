@@ -11,7 +11,8 @@
 @section('content')
     <div class="row">
         <div class="col-xs-12">
-            <producto class="table table-hover table-striped"></producto>
+            <producto class="table table-hover table-striped" :items="{{json_encode($products)}}"></producto>
         </div>
     </div>
+    @include('includes.modal')
 @stop

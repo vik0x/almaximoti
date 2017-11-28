@@ -10,15 +10,22 @@
 			</tr>
 		</thead>
 		<tbody>
-			<tr>
-				<td><button class="btn btn-default" @click:prevent="edit(item.id)"><i class="glyphicon glyphicon-pencil"></i></button></td>
-				<td>Uno</td>
-				<td>Dos</td>
-				<td>Tres</td>
-				<td><button class="btn btn-default" @click:prevent="destroy(item.id)"><i class="glyphicon glyphicon-remove"></i></button></td>
-			</tr>
+			<template v-for="item in items">
+				<item
+					:id="item.id"
+					:clave="item.key"
+					:name="item.name"
+					:type="item.type"
+				></item>
+			</template>
 		</tbody>
 	</table>
 </template>
-<script></script>
+<script>
+import ELEMENT from './itemProduct.vue';
+	export default{
+		components:{'item':ELEMENT},
+		props:['items'],
+	}
+</script>
 <style></style>

@@ -16,3 +16,4 @@ Route::get('/', function () {
 });
 
 Route::get('/productos','productController@index');
+Route::post('/producto/proveedor','productController@provider');
