@@ -26,14 +26,24 @@ const app = new Vue({
     	'detalle'	: DETAIL
     },
     data:{
-    	clave:'',
-    	nombre:'',
-    	tipo:'',
-    	activo:false,
         detail:{
-            clave:'',
-            nombre:'',
-            tipo:'',
+            clave   : '',
+            nombre  : '',
+            tipo    : '',
+            active  : true,
+        }
+    },
+    methods:{
+        save(){
+            axios.post('/producto/modificar',{
+                'data'      : this.detail,
+                '_method'   : 'PATCH'
+            })
+            .then(function(response){
+                if( response.status==200 ){
+                    $('#myModal').modal('hide');
+                }
+            });
         }
     }
 });

@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddGetProductsProcedure extends Migration
+class AddDeleteProtuctProcedure extends Migration
 {
     /**
      * Run the migrations.
@@ -13,18 +13,18 @@ class AddGetProductsProcedure extends Migration
      */
     public function up()
     {
-        $sql = 'CREATE PROCEDURE get_products()
+        $sql = 'CREATE PROCEDURE delete_product( IN product_id_proc INT(10) )
             BEGIN
-                SELECT
-                    p.id,
-                    p.name,
-                    p.key,
-                    t.id as type_id,
-                    t.name as type,
-                    p.active
+                DELETE
                 FROM
-                    products AS p
-                JOIN product_types AS t ON t.id = p.product_type_id;
+                    product_providers
+                WHERE
+                    product_id = product_id_proc;
+                DELETE
+                FROM
+                    products
+                WHERE
+                    id = product_id_proc;
             END';
         \DB::unprepared($sql);
     }
@@ -36,7 +36,7 @@ class AddGetProductsProcedure extends Migration
      */
     public function down()
     {
-        $sql = 'DROP PROCEDURE get_products;';
+        $sql = 'DROP PROCEDURE delete_product;';
         \DB::unprepared($sql);
     }
 }

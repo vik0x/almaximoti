@@ -22,13 +22,13 @@
                     <label for="tipo">Tipo de producto</label>
                     <select name="tipo" v-model="detail.tipo" id="tipo">
                         <option value="0">Seleccione una opción...</option>
-                        <option v-for="item in {{json_encode($types)}}" :id="item.id" v-text="item.name"></option>
+                        <option v-for="item in {{json_encode($types)}}" :value="item.id" v-text="item.name"></option>
                     </select>
                 </div>
                 <div class="form-group col-xs-6">
                     <div class="checkbox">
                         <label>
-                            <input type="checkbox" :checked="activo ? 'checked' : ''"> Activo
+                            <input type="checkbox" v-model="detail.active" :checked="detail.active ? 'checked' : ''"> Activo
                         </label>
                     </div>
                 </div>
@@ -42,7 +42,7 @@
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save changes</button>
+        <button type="button" class="btn btn-primary" @click="save">Save changes</button>
       </div>
     </div>
   </div>

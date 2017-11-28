@@ -16,6 +16,8 @@
 					:clave="item.key"
 					:name="item.name"
 					:type="item.type"
+					:type_id="item.type_id"
+					:active="item.active"
 				></item>
 			</template>
 		</tbody>
