@@ -41,6 +41,7 @@ const app = new Vue({
             })
             .then(function(response){
                 if( response.status==200 ){
+                    window.location.reload();
                     $('#myModal').modal('hide');
                 }
             });
@@ -53,6 +54,9 @@ const app = new Vue({
             this.$root.detail.active    = 1;
             eventBus.$emit('providers',[]);
             $('#myModal').modal('show');
+        },
+        add_provider(){
+            eventBus.$emit('add_provider');
         }
     }
 });

@@ -43152,7 +43152,7 @@ exports = module.exports = __webpack_require__(10)(undefined);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -43214,6 +43214,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 	mounted: function mounted() {
 		eventBus.$on('providers', function (prov, product) {
 			this.items = prov, this.id = product;
+		}.bind(this));
+		eventBus.$on('add_provider', function () {
+			this.items.push({
+				'id': 0,
+				'name': '',
+				'clave': '',
+				'price': 0
+			});
 		}.bind(this));
 	}
 });
@@ -43339,6 +43347,7 @@ var app = new Vue({
                 '_method': 'PATCH'
             }).then(function (response) {
                 if (response.status == 200) {
+                    window.location.reload();
                     $('#myModal').modal('hide');
                 }
             });
@@ -43351,6 +43360,9 @@ var app = new Vue({
             this.$root.detail.active = 1;
             eventBus.$emit('providers', []);
             $('#myModal').modal('show');
+        },
+        add_provider: function add_provider() {
+            eventBus.$emit('add_provider');
         }
     }
 });
@@ -43812,6 +43824,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 		},
 		cancel: function cancel() {
 			this.editing = false;
+			this.removed = this.id_ == 0 ? true : false;
 		},
 		save: function save() {
 			axios.post('/producto/proveedor/actualizar', {
@@ -43865,7 +43878,7 @@ var render = function() {
     ? _c(
         "tr",
         [
-          !_vm.editing
+          !_vm.editing && this.id_
             ? [
                 _c("td", [
                   _c(
@@ -43886,6 +43899,7 @@ var render = function() {
                     "button",
                     {
                       staticClass: "btn btn-default",
+                      attrs: { disabled: this.id_ > 0 ? false : true },
                       on: { click: _vm.destroy }
                     },
                     [_c("i", { staticClass: "glyphicon glyphicon-remove" })]

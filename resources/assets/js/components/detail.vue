@@ -48,6 +48,14 @@
 				this.items	= prov,
 				this.id		= product
 			}.bind(this));
+			eventBus.$on('add_provider', function(){
+				this.items.push({
+					'id' : 0,
+					'name':'',
+					'clave':'',
+					'price':0
+				});
+			}.bind(this));
 		}
 	}
 </script>

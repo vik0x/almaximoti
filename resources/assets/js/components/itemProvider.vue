@@ -1,11 +1,11 @@
 <template>
 	<tr v-if="!removed">
-		<template v-if="!editing">
+		<template v-if="!editing && this.id_">
 			<td><button class="btn btn-default" @click="edit"><i class="glyphicon glyphicon-pencil"></i></button></td>
 			<td>{{name_}}</td>
 			<td>{{clave_}}</td>
 			<td>{{price_}}</td>
-			<td><button class="btn btn-default" @click="destroy"><i class="glyphicon glyphicon-remove"></i></button></td>
+			<td><button class="btn btn-default" @click="destroy" :disabled="this.id_ > 0 ? false : true"><i class="glyphicon glyphicon-remove"></i></button></td>
 		</template>
 		<template v-else>
 			<td><button class="btn btn-success" @click="save"><i class="glyphicon glyphicon-check"></i></button></td>
@@ -46,6 +46,7 @@
 			},
 			cancel(){
 				this.editing = false;
+				this.removed = this.id_ == 0 ? true : false;
 			},
 			save(){
 				axios.post('/producto/proveedor/actualizar',{

@@ -46,7 +46,7 @@ class productController extends Controller{
 		$this->validate($request,[
 			'product_id'		=> 'required|integer|min:1',
 			'provider_id'		=> 'required|integer|min:1',
-			'provider_last_id'	=> 'required|integer|min:1',
+			'provider_last_id'	=> 'required|integer|min:0',
 			'clave'				=> 'required|string',
 			'price'				=> 'required'
 		]);
