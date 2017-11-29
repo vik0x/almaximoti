@@ -10,31 +10,43 @@
 			</tr>
 		</thead>
 		<tbody>
-			<tr v-for="item in items_provider">
-				<td><button class="btn btn-default" @click:prevent="edit(item.id)"><i class="glyphicon glyphicon-pencil"></i></button></td>
-				<td>{{item.name}}</td>
-				<td>{{item.clave}}</td>
-				<td>{{item.price}}</td>
-				<td><button class="btn btn-default" @click:prevent="destroy(item.id)"><i class="glyphicon glyphicon-remove"></i></button></td>
-			</tr>
+			<template v-for="item in items_provider">
+				<item
+				:product="id"
+				:id="item.id"
+				:name="item.name"
+				:clave="item.clave"
+				:price="item.price"
+				></item>
+			</template>
 		</tbody>
 	</table>
 </template>
 <script>
+	import ITEM from './itemProvider.vue';
 	export default{
+		props:['providers'],
+		components:{
+			'item':ITEM
+		},
 		data(){
 			return{
+				id:0,
 				items:[]
 			}
 		},
 		computed:{
 			items_provider(){
 				return this.items
+			},
+			provider_list(){
+				return this.providers;
 			}
 		},
 		mounted(){
-			eventBus.$on('providers', function(prov){
-				this.items = prov
+			eventBus.$on('providers', function(prov,product){
+				this.items	= prov,
+				this.id		= product
 			}.bind(this));
 		}
 	}

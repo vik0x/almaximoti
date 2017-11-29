@@ -43152,7 +43152,7 @@ exports = module.exports = __webpack_require__(10)(undefined);
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n", ""]);
 
 // exports
 
@@ -43163,6 +43163,10 @@ exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__itemProvider_vue__ = __webpack_require__(67);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__itemProvider_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__itemProvider_vue__);
+//
+//
 //
 //
 //
@@ -43186,9 +43190,15 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 
+
 /* harmony default export */ __webpack_exports__["default"] = ({
+	props: ['providers'],
+	components: {
+		'item': __WEBPACK_IMPORTED_MODULE_0__itemProvider_vue___default.a
+	},
 	data: function data() {
 		return {
+			id: 0,
 			items: []
 		};
 	},
@@ -43196,11 +43206,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 	computed: {
 		items_provider: function items_provider() {
 			return this.items;
+		},
+		provider_list: function provider_list() {
+			return this.providers;
 		}
 	},
 	mounted: function mounted() {
-		eventBus.$on('providers', function (prov) {
-			this.items = prov;
+		eventBus.$on('providers', function (prov, product) {
+			this.items = prov, this.id = product;
 		}.bind(this));
 	}
 });
@@ -43218,45 +43231,22 @@ var render = function() {
     _vm._v(" "),
     _c(
       "tbody",
-      _vm._l(_vm.items_provider, function(item) {
-        return _c("tr", [
-          _c("td", [
-            _c(
-              "button",
-              {
-                staticClass: "btn btn-default",
-                on: {
-                  "click:prevent": function($event) {
-                    _vm.edit(item.id)
-                  }
-                }
-              },
-              [_c("i", { staticClass: "glyphicon glyphicon-pencil" })]
-            )
-          ]),
-          _vm._v(" "),
-          _c("td", [_vm._v(_vm._s(item.name))]),
-          _vm._v(" "),
-          _c("td", [_vm._v(_vm._s(item.clave))]),
-          _vm._v(" "),
-          _c("td", [_vm._v(_vm._s(item.price))]),
-          _vm._v(" "),
-          _c("td", [
-            _c(
-              "button",
-              {
-                staticClass: "btn btn-default",
-                on: {
-                  "click:prevent": function($event) {
-                    _vm.destroy(item.id)
-                  }
-                }
-              },
-              [_c("i", { staticClass: "glyphicon glyphicon-remove" })]
-            )
-          ])
-        ])
-      })
+      [
+        _vm._l(_vm.items_provider, function(item) {
+          return [
+            _c("item", {
+              attrs: {
+                product: _vm.id,
+                id: item.id,
+                name: item.name,
+                clave: item.clave,
+                price: item.price
+              }
+            })
+          ]
+        })
+      ],
+      2
     )
   ])
 }
@@ -43352,6 +43342,15 @@ var app = new Vue({
                     $('#myModal').modal('hide');
                 }
             });
+        },
+        add_product: function add_product() {
+            this.$root.detail.clave = "";
+            this.$root.detail.nombre = "";
+            this.$root.detail.tipo = 0;
+            this.$root.detail.id = 0;
+            this.$root.detail.active = 1;
+            eventBus.$emit('providers', []);
+            $('#myModal').modal('show');
         }
     }
 });
@@ -43563,7 +43562,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 	methods: {
 		edit: function edit() {
 			axios.post('/producto/proveedor/', { 'id': this.id }).then(function (response) {
-				if (response.status == 200) eventBus.$emit('providers', response.data);
+				if (response.status == 200) eventBus.$emit('providers', response.data, this.id);
 				$('#myModal').modal('show');
 			}.bind(this)).catch(function (error) {});
 			this.$root.detail.clave = this.clave;
@@ -43698,6 +43697,320 @@ if (false) {
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin
+
+/***/ }),
+/* 56 */,
+/* 57 */,
+/* 58 */,
+/* 59 */,
+/* 60 */,
+/* 61 */,
+/* 62 */,
+/* 63 */,
+/* 64 */,
+/* 65 */,
+/* 66 */,
+/* 67 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__(9)
+/* script */
+var __vue_script__ = __webpack_require__(68)
+/* template */
+var __vue_template__ = __webpack_require__(69)
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources\\assets\\js\\components\\itemProvider.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {  return key !== "default" && key.substr(0, 2) !== "__"})) {  console.error("named exports are not supported in *.vue files.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-5a944afb", Component.options)
+  } else {
+    hotAPI.reload("data-v-5a944afb", Component.options)
+' + '  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+/* 68 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+	props: ['product', 'id', 'name', 'clave', 'price'],
+	data: function data() {
+		return {
+			id_: 0,
+			name_: '',
+			removed: false,
+			editing: false,
+			new_name: this.id,
+			new_clave: this.clave,
+			new_price: this.price
+		};
+	},
+	created: function created() {
+		this.id_ = this.id;
+		this.name_ = this.name;
+		this.clave_ = this.clave;
+		this.price_ = this.price;
+	},
+
+	methods: {
+		edit: function edit() {
+			this.editing = true;
+		},
+		cancel: function cancel() {
+			this.editing = false;
+		},
+		save: function save() {
+			axios.post('/producto/proveedor/actualizar', {
+				'product_id': this.product,
+				'provider_id': this.new_name,
+				'provider_last_id': this.id_,
+				'clave': this.new_clave,
+				'price': this.new_price,
+				'_method': 'PATCH'
+
+			}).then(function (response) {
+				if (response.status == 200) {
+					var name_val = this.$parent.provider_list.filter(function (x) {
+						if (x.id == this.new_name) {
+							return x.name;
+						}
+					}.bind(this));
+					this.id_ = this.new_name;
+					this.clave_ = this.new_clave;
+					this.price_ = this.new_price;
+					this.name_ = name_val[0].name;
+					this.editing = false;
+				}
+			}.bind(this)).catch(function (error) {});
+		},
+		destroy: function destroy() {
+			if (confirm('¿Eliminar?')) {
+				axios.post('producto/proveedor/eliminar', {
+					'product_id': this.product,
+					'provider_id': this.id_,
+					'_method': 'delete'
+				}).then(function (response) {
+					if (response.status == 200) {
+						this.removed = true;
+					}
+				}.bind(this));
+			}
+		}
+	}
+});
+
+/***/ }),
+/* 69 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return !_vm.removed
+    ? _c(
+        "tr",
+        [
+          !_vm.editing
+            ? [
+                _c("td", [
+                  _c(
+                    "button",
+                    { staticClass: "btn btn-default", on: { click: _vm.edit } },
+                    [_c("i", { staticClass: "glyphicon glyphicon-pencil" })]
+                  )
+                ]),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(_vm.name_))]),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(_vm.clave_))]),
+                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(_vm.price_))]),
+                _vm._v(" "),
+                _c("td", [
+                  _c(
+                    "button",
+                    {
+                      staticClass: "btn btn-default",
+                      on: { click: _vm.destroy }
+                    },
+                    [_c("i", { staticClass: "glyphicon glyphicon-remove" })]
+                  )
+                ])
+              ]
+            : [
+                _c("td", [
+                  _c(
+                    "button",
+                    { staticClass: "btn btn-success", on: { click: _vm.save } },
+                    [_c("i", { staticClass: "glyphicon glyphicon-check" })]
+                  )
+                ]),
+                _vm._v(" "),
+                _c("td", [
+                  _c(
+                    "select",
+                    {
+                      directives: [
+                        {
+                          name: "model",
+                          rawName: "v-model",
+                          value: _vm.new_name,
+                          expression: "new_name"
+                        }
+                      ],
+                      staticClass: "form-control",
+                      on: {
+                        change: function($event) {
+                          var $$selectedVal = Array.prototype.filter
+                            .call($event.target.options, function(o) {
+                              return o.selected
+                            })
+                            .map(function(o) {
+                              var val = "_value" in o ? o._value : o.value
+                              return val
+                            })
+                          _vm.new_name = $event.target.multiple
+                            ? $$selectedVal
+                            : $$selectedVal[0]
+                        }
+                      }
+                    },
+                    _vm._l(this.$parent.provider_list, function(item) {
+                      return _c("option", { domProps: { value: item.id } }, [
+                        _vm._v(_vm._s(item.name))
+                      ])
+                    })
+                  )
+                ]),
+                _vm._v(" "),
+                _c("td", [
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.new_clave,
+                        expression: "new_clave"
+                      }
+                    ],
+                    staticClass: "form-control",
+                    attrs: { type: "text" },
+                    domProps: { value: _vm.new_clave },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.new_clave = $event.target.value
+                      }
+                    }
+                  })
+                ]),
+                _vm._v(" "),
+                _c("td", [
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.new_price,
+                        expression: "new_price"
+                      }
+                    ],
+                    staticClass: "form-control",
+                    attrs: { type: "text" },
+                    domProps: { value: _vm.new_price },
+                    on: {
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.new_price = $event.target.value
+                      }
+                    }
+                  })
+                ]),
+                _vm._v(" "),
+                _c("td", [
+                  _c(
+                    "button",
+                    {
+                      staticClass: "btn btn-danger",
+                      on: { click: _vm.cancel }
+                    },
+                    [_vm._v("Cancelar")]
+                  )
+                ])
+              ]
+        ],
+        2
+      )
+    : _vm._e()
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-5a944afb", module.exports)
+  }
+}
 
 /***/ })
 /******/ ]);

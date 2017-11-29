@@ -17,5 +17,7 @@ Route::get('/', function () {
 
 Route::get('/productos','productController@index');
 Route::post('/producto/proveedor','productController@provider');
+Route::patch('/producto/proveedor/actualizar','productController@updateProvider');
 Route::patch('/producto/modificar','productController@update');
+Route::delete('/producto/proveedor/eliminar','productController@deleteProvider');
 Route::delete('/producto/eliminar','productController@delete');

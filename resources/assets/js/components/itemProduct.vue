@@ -20,7 +20,7 @@
 				axios.post('/producto/proveedor/',{'id':this.id})
 					.then(function(response){
 						if(response.status == 200)
-							eventBus.$emit('providers',response.data);
+							eventBus.$emit('providers',response.data,this.id);
 							$('#myModal').modal('show');
 					}.bind(this))
 					.catch(function(error){})

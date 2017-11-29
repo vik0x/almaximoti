@@ -21,15 +21,20 @@ class AddUpdateProductProcedure extends Migration
                 IN active_proc TINYINT(4)
             )
             BEGIN
-                UPDATE
-                    products
-                SET
-                    products.product_type_id = type_proc,
-                    products.key = key_proc,
-                    products.name = name_proc,
-                    products.active = active_proc
-                WHERE
-                    products.id = id_proc;
+                IF id_proc > 0 THEN
+                    UPDATE
+                        products
+                    SET
+                        products.product_type_id = type_proc,
+                        products.key = key_proc,
+                        products.name = name_proc,
+                        products.active = active_proc
+                    WHERE
+                        products.id = id_proc;
+                ELSE
+                    INSERT INTO products(product_type_id,`key`,name,active)
+                    VALUES(type_proc,key_proc,name_proc,active_proc);
+                END IF;
             END';
         \DB::unprepared($sql);
     }

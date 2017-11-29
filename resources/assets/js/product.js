@@ -44,6 +44,15 @@ const app = new Vue({
                     $('#myModal').modal('hide');
                 }
             });
+        },
+        add_product(){
+            this.$root.detail.clave     = "";
+            this.$root.detail.nombre    = "";
+            this.$root.detail.tipo      = 0;
+            this.$root.detail.id        = 0;
+            this.$root.detail.active    = 1;
+            eventBus.$emit('providers',[]);
+            $('#myModal').modal('show');
         }
     }
 });

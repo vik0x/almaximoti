@@ -34,9 +34,9 @@
                 </div>
             </div>
 
-            <div class="row">
+            <div class="row" v-if="detail.id != 0">
                 <div class="col-xs-12">
-                    <detalle class="table table-hover table-striped"></detalle>
+                    <detalle class="table table-hover table-striped" :providers="{{json_encode($providers)}}"></detalle>
                 </div>
             </div>
       </div>
